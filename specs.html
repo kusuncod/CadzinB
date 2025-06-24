@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Especificações - Space Game</title>
+    <style>
+        :root {
+            --primary-color: #2a3a4a;
+            --secondary-color: #4a6b8a;
+            --accent-color: #f5a623;
+            --light-color: #f5f5f5;
+            --dark-color: #1a2a3a;
+        }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: var(--dark-color);
+            color: var(--light-color);
+            line-height: 1.6;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        header {
+            text-align: center;
+            padding: 30px 0;
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            border-radius: 10px;
+            margin-bottom: 30px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+        }
+        h1, h2 {
+            color: var(--accent-color);
+        }
+        .game-link {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 12px 25px;
+            background-color: var(--accent-color);
+            color: var(--dark-color);
+            text-decoration: none;
+            border-radius: 30px;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            box-shadow: 0 3px 6px rgba(0, 0, 0, 0.2);
+        }
+        .game-link:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(245, 166, 35, 0.4);
+            background-color: #ffb732;
+        }
+        .specs-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            margin-bottom: 30px;
+        }
+        .specs-item {
+            background-color: var(--primary-color);
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
+        }
+        .specs-images img {
+            max-width: 100%;
+            border-radius: 8px;
+            border: 2px solid var(--accent-color);
+            margin-bottom: 10px;
+        }
+        @media (max-width: 600px) {
+            .specs-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Especificações Técnicas</h1>
+            <p>Detalhes sobre o desenvolvimento do jogo</p>
+        </header>
+
+        <div class="specs-grid">
+            <div class="specs-item">
+                <h2>Informações</h2>
+                <p><strong>Criadores:</strong> Ryquelme e Jorge</p>
+                <p><strong>Versão:</strong> 1.0</p>
+                <p><strong>Tamanho:</strong> 14.23 MB</p>
+                <p><strong>Contato:</strong> 91 98474-4448</p>
+            </div>
+
+            <div class="specs-item">
+                <h2>Galeria</h2>
+                <div class="specs-images">
+                    <img src="assets/images/gameplay-1.jpg" alt="Cena de gameplay">
+                    <img src="assets/images/gameplay-2.jpg" alt="Menu do jogo">
+                </div>
+            </div>
+        </div>
+
+        <a href="index.html" class="game-link">Voltar para Avaliação</a>
+    </div>
+</body>
+</html>
