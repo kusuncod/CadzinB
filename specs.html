@@ -70,6 +70,15 @@
             border-radius: 8px;
             border: 2px solid var(--accent-color);
             margin-bottom: 10px;
+            transition: transform 0.3s;
+        }
+        .specs-images img:hover {
+            transform: scale(1.02);
+        }
+        .image-caption {
+            text-align: center;
+            font-style: italic;
+            color: var(--accent-color);
         }
         @media (max-width: 600px) {
             .specs-grid {
@@ -97,8 +106,11 @@
             <div class="specs-item">
                 <h2>Galeria</h2>
                 <div class="specs-images">
-                    <img src="assets/images/gameplay-1.jpg" alt="Cena de gameplay">
-                    <img src="assets/images/gameplay-2.jpg" alt="Menu do jogo">
+                    <img src="fundadorj-space-game.png" alt="Gameplay Space Game">
+                    <p class="image-caption">Cena de batalha espacial</p>
+                    
+                    <img src="fundadors-space-game.png" alt="Interface do jogo">
+                    <p class="image-caption">Menu principal</p>
                 </div>
             </div>
         </div>
