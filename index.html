@@ -10,7 +10,6 @@
     <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-database-compat.js"></script>
 
     <style>
-        /* [SEU CSS ESTÁ PERFEITO — MANTIVE IGUAL] */
         :root {
             --primary-color: #2a3a4a;
             --secondary-color: #4a6b8a;
@@ -31,21 +30,26 @@
         h1 {margin: 0;font-size: 2.5rem;color: var(--accent-color);}
         .game-link {display: inline-block;margin-top: 20px;padding: 12px 25px;background-color: var(--accent-color);color: var(--dark-color);text-decoration: none;border-radius: 30px;font-weight: bold;transition: all 0.3s ease;box-shadow: 0 3px 6px rgba(0, 0, 0, 0.2);}
         .game-link:hover {transform: translateY(-3px);box-shadow: 0 5px 15px rgba(245, 166, 35, 0.4);background-color: #ffb732;}
-        .rating-section {background-color: var(--primary-color);padding: 25px;border-radius: 10px;margin-bottom: 30px;box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);}
+        .rating-section, .specs-section {background-color: var(--primary-color);padding: 25px;border-radius: 10px;margin-bottom: 30px;box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);}
         h2 {color: var(--accent-color);margin-top: 0;}
         .stars {display: flex;justify-content: center;margin: 20px 0;}
         .star {font-size: 2.5rem;color: #ccc;cursor: pointer;transition: color 0.2s, transform 0.2s;margin: 0 5px;}
         .star:hover, .star.active {color: var(--accent-color);transform: scale(1.1);}
         textarea {width: 100%;padding: 15px;border-radius: 8px;border: none;background-color: var(--light-color);margin-bottom: 15px;resize: vertical;min-height: 100px;font-family: inherit;}
-        .submit-btn {background-color: var(--accent-color);color: var(--dark-color);border: none;padding: 12px 25px;border-radius: 30px;cursor: pointer;font-weight: bold;font-size: 1rem;transition: all 0.3s ease;display: block;margin: 0 auto;box-shadow: 0 3px 6px rgba(0, 0, 0, 0.2);}
-        .submit-btn:hover {background-color: #ffb732;transform: translateY(-2px);box-shadow: 0 5px 15px rgba(245, 166, 35, 0.4);}
+        .submit-btn, .specs-btn {background-color: var(--accent-color);color: var(--dark-color);border: none;padding: 12px 25px;border-radius: 30px;cursor: pointer;font-weight: bold;font-size: 1rem;transition: all 0.3s ease;display: block;margin: 0 auto;box-shadow: 0 3px 6px rgba(0, 0, 0, 0.2);}
+        .submit-btn:hover, .specs-btn:hover {background-color: #ffb732;transform: translateY(-2px);box-shadow: 0 5px 15px rgba(245, 166, 35, 0.4);}
         .thank-you {text-align: center;padding: 20px;background-color: rgba(74, 107, 138, 0.3);border-radius: 10px;display: none;}
         .features {display: grid;grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));gap: 20px;margin-bottom: 30px;}
         .feature {background-color: var(--primary-color);padding: 20px;border-radius: 10px;box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);transition: transform 0.3s ease;}
         .feature:hover {transform: translateY(-5px);}
         .feature h3 {color: var(--accent-color);margin-top: 0;}
         footer {text-align: center;padding: 20px;margin-top: 40px;background-color: var(--primary-color);border-radius: 10px;}
-        @media (max-width: 600px) {h1 {font-size: 2rem;}.stars {flex-wrap: wrap;}.star {font-size: 2rem;}}
+        
+        @media (max-width: 600px) {
+            h1 {font-size: 2rem;}
+            .stars {flex-wrap: wrap;}
+            .star {font-size: 2rem;}
+        }
     </style>
 </head>
 <body>
@@ -85,6 +89,12 @@
                 <textarea placeholder="Conte-nos o que você achou do jogo... O que mais gostou? O que poderia ser melhorado?" required></textarea>
                 <button type="submit" class="submit-btn">Enviar Avaliação</button>
             </form>
+        </div>
+        
+        <!-- SEÇÃO DE ESPECIFICAÇÕES MODIFICADA -->
+        <div class="specs-section">
+            <h2>Especificações Técnicas</h2>
+            <a href="specs.html" class="game-link">Ver Especificações Completas</a>
         </div>
         
         <div class="thank-you">
