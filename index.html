@@ -3,7 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Especificações - Space Game</title>
+    <title>Avaliação - Space Game</title>
+    
+    <!-- Firebase SDK -->
+    <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.2/firebase-database-compat.js"></script>
+
     <style>
         :root {
             --primary-color: #2a3a4a;
@@ -11,6 +16,7 @@
             --accent-color: #f5a623;
             --light-color: #f5f5f5;
             --dark-color: #1a2a3a;
+            --new-btn-color: #4CAF50;
         }
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -20,99 +26,50 @@
             color: var(--light-color);
             line-height: 1.6;
         }
-        .container {
-            max-width: 800px;
-            margin: 0 auto;
-            padding: 20px;
-        }
-        header {
-            text-align: center;
-            padding: 30px 0;
-            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
-            border-radius: 10px;
-            margin-bottom: 30px;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
-        }
-        h1, h2 {
-            color: var(--accent-color);
-        }
-        .game-link {
-            display: inline-block;
-            margin-top: 20px;
-            padding: 12px 25px;
-            background-color: var(--accent-color);
-            color: var(--dark-color);
-            text-decoration: none;
-            border-radius: 30px;
-            font-weight: bold;
-            transition: all 0.3s ease;
-            box-shadow: 0 3px 6px rgba(0, 0, 0, 0.2);
-        }
-        .game-link:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 5px 15px rgba(245, 166, 35, 0.4);
-            background-color: #ffb732;
-        }
-        .specs-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 30px;
-            margin-bottom: 30px;
-        }
-        .specs-item {
-            background-color: var(--primary-color);
-            padding: 20px;
-            border-radius: 10px;
-            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
-        }
-        .specs-images img {
-            max-width: 100%;
-            border-radius: 8px;
-            border: 2px solid var(--accent-color);
-            margin-bottom: 10px;
-            transition: transform 0.3s;
-            cursor: pointer;
-        }
-        .specs-images a img:hover {
-            transform: scale(1.02);
-        }
-        .image-caption {
-            text-align: center;
-            font-style: italic;
-            color: var(--accent-color);
-        }
-        .tech-list {
-            list-style-type: none;
-            padding: 0;
-        }
-        .tech-list li {
-            padding: 8px 0;
-            border-bottom: 1px solid var(--secondary-color);
+        .container {max-width: 800px;margin: 0 auto;padding: 20px;}
+        header {text-align: center;padding: 30px 0;background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));border-radius: 10px;margin-bottom: 30px;box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);}
+        h1 {margin: 0;font-size: 2.5rem;color: var(--accent-color);}
+        .game-link {display: inline-block;margin-top: 20px;padding: 12px 25px;background-color: var(--accent-color);color: var(--dark-color);text-decoration: none;border-radius: 30px;font-weight: bold;transition: all 0.3s ease;box-shadow: 0 3px 6px rgba(0, 0, 0, 0.2);}
+        .game-link:hover {transform: translateY(-3px);box-shadow: 0 5px 15px rgba(245, 166, 35, 0.4);background-color: #ffb732;}
+        .rating-section, .specs-section {background-color: var(--primary-color);padding: 25px;border-radius: 10px;margin-bottom: 30px;box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);}
+        h2 {color: var(--accent-color);margin-top: 0;}
+        .stars {display: flex;justify-content: center;margin: 20px 0;}
+        .star {font-size: 2.5rem;color: #ccc;cursor: pointer;transition: color 0.2s, transform 0.2s;margin: 0 5px;}
+        .star:hover, .star.active {color: var(--accent-color);transform: scale(1.1);}
+        textarea {width: 100%;padding: 15px;border-radius: 8px;border: none;background-color: var(--light-color);margin-bottom: 15px;resize: vertical;min-height: 100px;font-family: inherit;}
+        .submit-btn, .specs-btn {background-color: var(--accent-color);color: var(--dark-color);border: none;padding: 12px 25px;border-radius: 30px;cursor: pointer;font-weight: bold;font-size: 1rem;transition: all 0.3s ease;display: block;margin: 0 auto;box-shadow: 0 3px 6px rgba(0, 0, 0, 0.2);}
+        .submit-btn:hover, .specs-btn:hover {background-color: #ffb732;transform: translateY(-2px);box-shadow: 0 5px 15px rgba(245, 166, 35, 0.4);}
+        .thank-you {text-align: center;padding: 20px;background-color: rgba(74, 107, 138, 0.3);border-radius: 10px;display: none;}
+        .features {display: grid;grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));gap: 20px;margin-bottom: 30px;}
+        .feature {background-color: var(--primary-color);padding: 20px;border-radius: 10px;box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);transition: transform 0.3s ease;}
+        .feature:hover {transform: translateY(-5px);}
+        .feature h3 {color: var(--accent-color);margin-top: 0;}
+        footer {text-align: center;padding: 20px;margin-top: 40px;background-color: var(--primary-color);border-radius: 10px;}
+        
+        /* Estilos para os novos botões */
+        .specs-buttons {
             display: flex;
-            justify-content: space-between;
+            justify-content: center;
+            gap: 15px;
+            flex-wrap: wrap;
         }
-        .tech-list li:last-child {
-            border-bottom: none;
+        .specs-btn-original {
+            background-color: var(--accent-color);
         }
-        .tech-list strong {
-            color: var(--accent-color);
+        .specs-btn-new {
+            background-color: var(--new-btn-color);
         }
-        .features-list {
-            padding-left: 20px;
+        .specs-btn-new:hover {
+            background-color: #45a049;
         }
-        .features-list li {
-            margin-bottom: 10px;
-            position: relative;
-        }
-        .features-list li::before {
-            content: "➤";
-            color: var(--accent-color);
-            position: absolute;
-            left: -20px;
-        }
+        
         @media (max-width: 600px) {
-            .specs-grid {
-                grid-template-columns: 1fr;
+            h1 {font-size: 2rem;}
+            .stars {flex-wrap: wrap;}
+            .star {font-size: 2rem;}
+            .specs-buttons {
+                flex-direction: column;
+                align-items: center;
             }
         }
     </style>
@@ -120,80 +77,147 @@
 <body>
     <div class="container">
         <header>
-            <h1>Especificações Técnicas</h1>
-            <p>Detalhes sobre o desenvolvimento do jogo Space Game</p>
+            <h1>Space Game</h1>
+            <p>Ajude-nos a melhorar compartilhando sua experiência!</p>
+            <a href="https://kazin53.github.io/Space-/" class="game-link">Jogar Agora</a>
         </header>
-
-        <div class="specs-grid">
-            <div class="specs-item">
-                <h2>Informações Básicas</h2>
-                <ul class="tech-list">
-                    <li><strong>Criadores:</strong> Ryquelme e Jorge</li>
-                    <li><strong>Versão:</strong> 1.0</li>
-                    <li><strong>Tamanho:</strong> 14.23 MB</li>
-                    <li><strong>Data de Lançamento:</strong> 15/06/2023</li>
-                    <li><strong>Contato:</strong> 91 98474-4448</li>
-                    <li><strong>Email:</strong> contato@spacegame.com</li>
-                </ul>
+        
+        <div class="features">
+            <div class="feature">
+                <h3>Gráficos Incríveis</h3>
+                <p>Explore o espaço com visuais deslumbrantes e efeitos especiais impressionantes.</p>
             </div>
-
-            <div class="specs-item">
-                <h2>Galeria</h2>
-                <div class="specs-images">
-                    <!-- Primeira imagem SEM link -->
-                    <img src="fundadorj-space-game.png" alt="Gameplay Space Game">
-                    <p class="image-caption">Cena de batalha espacial</p>
-                    
-                    <!-- Segunda imagem COM link para o Instagram -->
-                    <a href="https://www.instagram.com/ryquelme959/" target="_blank" rel="noopener noreferrer">
-                        <img src="fundadors-space-game.png" alt="Interface do jogo">
-                    </a>
-                    <p class="image-caption">Menu principal - Clique para ver no Instagram</p>
-                </div>
+            <div class="feature">
+                <h3>Controles Intuitivos</h3>
+                <p>Jogabilidade fácil de aprender, mas desafiadora para dominar.</p>
+            </div>
+            <div class="feature">
+                <h3>Diversão Infinita</h3>
+                <p>Níveis variados e desafios constantes para manter você engajado.</p>
             </div>
         </div>
-
-        <div class="specs-grid">
-            <div class="specs-item">
-                <h2>Tecnologias Utilizadas</h2>
-                <ul class="tech-list">
-                    <li><strong>Motor Gráfico:</strong> Unity 2022.3</li>
-                    <li><strong>Linguagem:</strong> C#</li>
-                    <li><strong>Plataforma:</strong> Windows, Android</li>
-                    <li><strong>Resolução:</strong> 1920x1080 (Full HD)</li>
-                    <li><strong>FPS:</strong> 60 quadros/segundo</li>
-                </ul>
+        
+        <div class="rating-section">
+            <h2>Como você avalia o jogo?</h2>
+            <div class="stars">
+                <span class="star" data-rating="1">★</span>
+                <span class="star" data-rating="2">★</span>
+                <span class="star" data-rating="3">★</span>
+                <span class="star" data-rating="4">★</span>
+                <span class="star" data-rating="5">★</span>
             </div>
-
-            <div class="specs-item">
-                <h2>Requisitos do Sistema</h2>
-                <ul class="tech-list">
-                    <li><strong>Sistema Operacional:</strong> Windows 10+</li>
-                    <li><strong>Processador:</strong> Intel i5 ou equivalente</li>
-                    <li><strong>Memória RAM:</strong> 4GB mínimo</li>
-                    <li><strong>Placa de Vídeo:</strong> 2GB VRAM</li>
-                    <li><strong>Armazenamento:</strong> 50MB livres</li>
-                </ul>
+            
+            <form id="review-form">
+                <textarea placeholder="Conte-nos o que você achou do jogo... O que mais gostou? O que poderia ser melhorado?" required></textarea>
+                <button type="submit" class="submit-btn">Enviar Avaliação</button>
+            </form>
+        </div>
+        
+        <!-- SEÇÃO DE ESPECIFICAÇÕES MODIFICADA COM DOIS BOTÕES -->
+        <div class="specs-section">
+            <h2>Especificações Técnicas</h2>
+            <div class="specs-buttons">
+                <a href="specs.html" class="game-link specs-btn-original">Versão Padrão</a>
+                <a href="unindex.html" class="game-link specs-btn-new">Versão Completa</a>
             </div>
         </div>
-
-        <div class="specs-item">
-            <h2>Principais Funcionalidades</h2>
-            <ul class="features-list">
-                <li>Sistema de combate espacial com física realista</li>
-                <li>5 naves diferentes com habilidades únicas</li>
-                <li>15 níveis progressivos com desafios variados</li>
-                <li>Sistema de upgrade para naves e armas</li>
-                <li>Multiplayer local para até 2 jogadores</li>
-                <li>Trilha sonora original e efeitos sonoros imersivos</li>
-                <li>Suporte a controles e teclado/mouse</li>
-            </ul>
+        
+        <div class="thank-you">
+            <h2>Obrigado por sua avaliação!</h2>
+            <p>Sua opinião é muito importante para nós. Volte sempre para jogar mais!</p>
+            <a href="https://kazin53.github.io/Space-/" class="game-link">Jogar Novamente</a>
         </div>
-
-        <div style="text-align: center; margin-top: 40px;">
-            <a href="index.html" class="game-link">Voltar para Avaliação</a>
-            <a href="download.html" class="game-link" style="margin-left: 15px;">Download do Jogo</a>
-        </div>
+        
+        <footer>
+            <p>© 2023 Space Game. Todos os direitos reservados.</p>
+        </footer>
     </div>
+
+    <!-- Firebase + Script -->
+    <script>
+        // Configuração do Firebase
+        const firebaseConfig = {
+            apiKey: "AIzaSyDmiMmuv7wyqrxOBbAj-XnVttMXDO3YSXk",
+            authDomain: "avaliar-site-space.firebaseapp.com",
+            databaseURL: "https://avaliar-site-space-default-rtdb.asia-southeast1.firebasedatabase.app",
+            projectId: "avaliar-site-space",
+            storageBucket: "avaliar-site-space.appspot.com",
+            messagingSenderId: "372901714998",
+            appId: "1:372901714998:web:bfe5aa406285f6caa70c97",
+            measurementId: "G-755T2KYH5R"
+        };
+
+        // Inicializar Firebase
+        firebase.initializeApp(firebaseConfig);
+        const database = firebase.database();
+
+        document.addEventListener('DOMContentLoaded', function() {
+            const stars = document.querySelectorAll('.star');
+            const form = document.getElementById('review-form');
+            const thankYou = document.querySelector('.thank-you');
+            let currentRating = 0;
+
+            // Estrelas interativas
+            stars.forEach(star => {
+                star.addEventListener('click', function() {
+                    const rating = parseInt(this.getAttribute('data-rating'));
+                    currentRating = rating;
+
+                    stars.forEach(s => {
+                        s.classList.remove('active');
+                        if (parseInt(s.getAttribute('data-rating')) <= rating) {
+                            s.classList.add('active');
+                        }
+                    });
+                });
+
+                star.addEventListener('mouseover', function() {
+                    const rating = parseInt(this.getAttribute('data-rating'));
+
+                    stars.forEach(s => {
+                        s.style.color = '#ccc';
+                        if (parseInt(s.getAttribute('data-rating')) <= rating) {
+                            s.style.color = '#f5a623';
+                        }
+                    });
+                });
+
+                star.addEventListener('mouseout', function() {
+                    stars.forEach(s => {
+                        s.style.color = s.classList.contains('active') ? '#f5a623' : '#ccc';
+                    });
+                });
+            });
+
+            // Envio do formulário para o Firebase
+            form.addEventListener('submit', function(e) {
+                e.preventDefault();
+                const reviewText = this.querySelector('textarea').value;
+
+                if (currentRating === 0) {
+                    alert('Por favor, selecione uma quantidade de estrelas.');
+                    return;
+                }
+
+                database.ref('avaliacoes').push({
+                    estrelas: currentRating,
+                    comentario: reviewText,
+                    data: new Date().toISOString()
+                })
+                .then(() => {
+                    form.style.display = 'none';
+                    document.querySelector('.rating-section h2').style.display = 'none';
+                    document.querySelector('.stars').style.display = 'none';
+                    thankYou.style.display = 'block';
+                    thankYou.scrollIntoView({ behavior: 'smooth' });
+                })
+                .catch((error) => {
+                    console.error('Erro ao enviar avaliação:', error);
+                    alert('❌ Erro ao enviar sua avaliação.');
+                });
+            });
+        });
+    </script>
 </body>
 </html>
+            
