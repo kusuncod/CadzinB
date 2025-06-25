@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Especificações - Space Game</title>
+    <style>
+        :root {
+            --primary-color: #2a3a4a;
+            --secondary-color: #4a6b8a;
+            --accent-color: #f5a623;
+            --light-color: #f5f5f5;
+            --dark-color: #1a2a3a;
+        }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: var(--dark-color);
+            color: var(--light-color);
+            line-height: 1.6;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        header {
+            text-align: center;
+            padding: 30px 0;
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            border-radius: 10px;
+            margin-bottom: 30px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+        }
+        h1, h2 {
+            color: var(--accent-color);
+        }
+        .game-link {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 12px 25px;
+            background-color: var(--accent-color);
+            color: var(--dark-color);
+            text-decoration: none;
+            border-radius: 30px;
+            font-weight: bold;
+            transition: all 0.3s ease;
+            box-shadow: 0 3px 6px rgba(0, 0, 0, 0.2);
+        }
+        .game-link:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(245, 166, 35, 0.4);
+            background-color: #ffb732;
+        }
+        .specs-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            margin-bottom: 30px;
+        }
+        .specs-item {
+            background-color: var(--primary-color);
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
+        }
+        .specs-images img {
+            max-width: 100%;
+            border-radius: 8px;
+            border: 2px solid var(--accent-color);
+            margin-bottom: 10px;
+            transition: transform 0.3s;
+            cursor: pointer;
+        }
+        .specs-images a img:hover {
+            transform: scale(1.02);
+        }
+        .image-caption {
+            text-align: center;
+            font-style: italic;
+            color: var(--accent-color);
+        }
+        .tech-list {
+            list-style-type: none;
+            padding: 0;
+        }
+        .tech-list li {
+            padding: 8px 0;
+            border-bottom: 1px solid var(--secondary-color);
+            display: flex;
+            justify-content: space-between;
+        }
+        .tech-list li:last-child {
+            border-bottom: none;
+        }
+        .tech-list strong {
+            color: var(--accent-color);
+        }
+        .features-list {
+            padding-left: 20px;
+        }
+        .features-list li {
+            margin-bottom: 10px;
+            position: relative;
+        }
+        .features-list li::before {
+            content: "➤";
+            color: var(--accent-color);
+            position: absolute;
+            left: -20px;
+        }
+        @media (max-width: 600px) {
+            .specs-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Especificações Técnicas</h1>
+            <p>Detalhes sobre o desenvolvimento do jogo Space Game</p>
+        </header>
+
+        <div class="specs-grid">
+            <div class="specs-item">
+                <h2>Informações Básicas</h2>
+                <ul class="tech-list">
+                    <li><strong>Criadores:</strong> Ryquelme e Jorge</li>
+                    <li><strong>Versão:</strong> 1.0</li>
+                    <li><strong>Tamanho:</strong> 14.23 MB</li>
+                    <li><strong>Data de Lançamento:</strong> 15/06/2023</li>
+                    <li><strong>Contato:</strong> 91 98474-4448</li>
+                    <li><strong>Email:</strong> contato@spacegame.com</li>
+                </ul>
+            </div>
+
+            <div class="specs-item">
+                <h2>Galeria</h2>
+                <div class="specs-images">
+                    <!-- Primeira imagem SEM link -->
+                    <img src="fundadorj-space-game.png" alt="Gameplay Space Game">
+                    <p class="image-caption">Cena de batalha espacial</p>
+                    
+                    <!-- Segunda imagem COM link para o Instagram -->
+                    <a href="https://www.instagram.com/ryquelme959/" target="_blank" rel="noopener noreferrer">
+                        <img src="fundadors-space-game.png" alt="Interface do jogo">
+                    </a>
+                    <p class="image-caption">Menu principal - Clique para ver no Instagram</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="specs-grid">
+            <div class="specs-item">
+                <h2>Tecnologias Utilizadas</h2>
+                <ul class="tech-list">
+                    <li><strong>Motor Gráfico:</strong> Unity 2022.3</li>
+                    <li><strong>Linguagem:</strong> C#</li>
+                    <li><strong>Plataforma:</strong> Windows, Android</li>
+                    <li><strong>Resolução:</strong> 1920x1080 (Full HD)</li>
+                    <li><strong>FPS:</strong> 60 quadros/segundo</li>
+                </ul>
+            </div>
+
+            <div class="specs-item">
+                <h2>Requisitos do Sistema</h2>
+                <ul class="tech-list">
+                    <li><strong>Sistema Operacional:</strong> Windows 10+</li>
+                    <li><strong>Processador:</strong> Intel i5 ou equivalente</li>
+                    <li><strong>Memória RAM:</strong> 4GB mínimo</li>
+                    <li><strong>Placa de Vídeo:</strong> 2GB VRAM</li>
+                    <li><strong>Armazenamento:</strong> 50MB livres</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="specs-item">
+            <h2>Principais Funcionalidades</h2>
+            <ul class="features-list">
+                <li>Sistema de combate espacial com física realista</li>
+                <li>5 naves diferentes com habilidades únicas</li>
+                <li>15 níveis progressivos com desafios variados</li>
+                <li>Sistema de upgrade para naves e armas</li>
+                <li>Multiplayer local para até 2 jogadores</li>
+                <li>Trilha sonora original e efeitos sonoros imersivos</li>
+                <li>Suporte a controles e teclado/mouse</li>
+            </ul>
+        </div>
+
+        <div style="text-align: center; margin-top: 40px;">
+            <a href="index.html" class="game-link">Voltar para Avaliação</a>
+            <a href="download.html" class="game-link" style="margin-left: 15px;">Download do Jogo</a>
+        </div>
+    </div>
+</body>
+</html>
